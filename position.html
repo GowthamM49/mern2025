@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 2000px; /* To allow scrolling */
+        }
+        #sticky {
+            position: sticky;
+            top: 10px;
+            background-color: lightblue;
+            padding: 20px;
+            font-size: 24px;
+        }
+        #fixed {
+            position: fixed;
+            top: 30px;
+            right: 20px;
+            background-color: lightcoral;
+            padding: 20px;
+            font-size: 24px;
+        }
+        #relative {
+            position: relative;
+            background-color: lightgreen;
+            padding: 20px;
+            font-size: 24px;
+            margin-top: 100px; /* To show the effect of relative positioning */
+        }
+        #absolute {
+            position: absolute;
+            top:245px;
+            left: 500px;
+            background-color: lightyellow;
+            padding: 20px;
+            font-size: 24px;
+        }
+        p {
+            margin: 20px;
+            font-size: 18px;
+        }
+        #sticky, #fixed, #relative, #absolute {
+            margin: 20px;
+        }         
+        </style>
+    </head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro quis cupiditate sed id distinctio illum corrupti beatae incidunt consequatur? Beatae porro quo similique nisi. Repellendus officiis reiciendis maxime eveniet commodi quis, deserunt sit sequi. Dolores quod voluptate rem quibusdam ratione omnis, optio earum dolore magnam sunt laudantium dignissimos quisquam sequi!</p>    
+<div id="sticky"><h1>Sticky Header</h1></div>
+<div id="fixed"><h1>fixed</h1></div>
+<div id="relative"><h1>relative</h1></div>
+<div id="absolute"><h1>absolute</h1></div>
+</body>
+</html>

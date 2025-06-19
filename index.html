@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login Form</title>
 </head>
 <body>
-    <h1>
-        hello world
-    </h1>
+
+<h2 style="text-align: center  ;">login Form</h2>
+
+<form onsubmit="return validateForm()">
+
+  <label for="name">Full Name:</label>
+  <input type="text" id="name" name="name">
+
+  <label for="email">Email:</label>
+  <input type="text" id="email" name="email">
+
+  <label for="mobile">Mobile Number:</label>
+  <input type="text" id="mobile" name="mobile">
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password">
+
+  <label for="confirmPassword">Confirm Password:</label>
+  <input type="password" id="confirmPassword" name="confirmPassword">
+
+<label>Gender:</label><br>
+<input type="radio" name="gender" value="Male"> Male
+<input type="radio" name="gender" value="Female"> Female
+<input type="radio" name="gender" value="Other" > Other
+  
+<button type="submit">login</button>
+</form>
 </body>
 </html>
