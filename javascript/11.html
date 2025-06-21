@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Water Tracker</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin: 50px; }
+    .progress-bar {
+      height: 30px; background: #eee; border-radius: 5px;
+      margin: 20px auto; width: 80%; position: relative;
+    }
+    .progress-fill {
+      background: #00bfff; height: 100%; width: 0%; border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>💧 Water Intake Tracker</h2>
+  <p>Goal: <span id="goal">2000</span> ml</p>
+  <div class="progress-bar">
+    <div class="progress-fill" id="fill"></div>
+  </div>
+  <p>Consumed: <span id="consumed">0</span> ml</p>
+  <button onclick="addWater(250)">+250ml</button>
+  <button onclick="addWater(500)">+500ml</button>
+  <button onclick="reset()">Reset</button>
+
+  <script>
+    let consumed = 0;
+    const goal = 2000;
+
+    function addWater(amount) {
+      consumed += amount;
+      if (consumed > goal) consumed = goal;
+      updateUI();
+    }
+
+    function reset() {
+      consumed = 0;
+      updateUI();
+    }
+
+    function updateUI() {
+      document.getElementById("consumed").innerText = consumed;
+      document.getElementById("fill").style.width = (consumed / goal * 100) + "%";
+    }
+  </script>
+</body>
+</html>
