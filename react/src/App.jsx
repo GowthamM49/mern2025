@@ -13,6 +13,7 @@ import Hooks from './Pages/Hooks'
 import State from './Hooks/State'
 import Ref from './Hooks/Ref'
 import Reducer from './Hooks/Reducer'
+import Todo from './components/Todo'
 import { Routes, Route } from 'react-router-dom'
 import { userContext } from './Hooks/Context'
 
@@ -36,6 +37,16 @@ const App = () => {
         <Route path="/state" element={<State />} />
         <Route path="/reducer" element={<Reducer />} />
         <Route path="/ref" element={<Ref />} />
+        <Route path="/todo" element={<Todo />} />
+        <Route
+          path="/context"
+          element={
+            <userContext.Provider value={{ name: 'Gowthamm', age: 22 }}>
+              <h1>Context API</h1>
+            </userContext.Provider>
+          } 
+        />
+        
         
       </Routes>
     </div>
