@@ -6,12 +6,12 @@ const router = require('./routers/egRouters');
 const todorouter = require('./routers/todoRouters'); // <-- Add this line
 dotenv.config();
 const app = express();
-const PORT=3000;
+const PORT = process.env.PORT || 3000;
 connectDB();
 app.use(express.json());
 app.use(cors());
 app.use(router);
 app.use('/todo', todorouter);
 app.listen(PORT, () => {
-    console.log(`Server is a running on port http://localhost:${PORT}`);
-})
+    console.log(`Server is running on port http://localhost:${PORT}`);
+});
