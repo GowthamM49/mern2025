@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const cors = require('cors');
-const router = require('./Routers/egRouters');
+const router = require('./routers/egRouters');
 const todorouter = require('./routers/todoRouters'); // <-- Add this line
 dotenv.config();
 const app = express();

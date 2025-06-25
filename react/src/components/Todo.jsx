@@ -1,34 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const API='http://localhost:3000';
 
 const Todo = () => {
   const [task, setTask] = useState('');
-  const [todo, setTodo] = useState([]);
+  const [todos, setTodos] = useState([]);
+  const [editing, setEditing] = useState(null);
 
   const fetchTodo = async () => {
-    const { data } = await axios.get('http://localhost:3000/todo/');
-    setTodo(data);
+    const { data } = await axios.get(`${API}/todo/`);
+    setTodos(data);
   };
 
   useEffect(() => { fetchTodo(); }, []);
 
-  const addTodo = async () => {
+  const handleAddOrEdit = async () => {
     if (!task.trim()) return;
-    await axios.post('http://localhost:3000/todo', { task });
+    if (editing) {
+      await axios.put(`${API}/todo/${editing._id}`, { task });
+      setEditing(null);
+    } else {
+      await axios.post(`${API}/todo`, { task });
+    }
     setTask('');
     fetchTodo();
   };
 
-  const deleteTodo = async id => {
-    await axios.delete(`http://localhost:3000/todo/${id}`);
+  const handleDelete = async id => {
+    await axios.delete(`${API}/todo/${id}`);
     fetchTodo();
   };
-  const updateTodo = async (id, oldTask) => {
-    const updatedTask = prompt('Update task:', oldTask);
-    if (updatedTask) {
-      await axios.put(`http://localhost:3000/todo/${id}`, { task: updatedTask });
-      fetchTodo();
-    }
+
+  const handleToggleStatus = async todo => {
+    await axios.put(`${API}/todo/${todo._id}`, {
+      status: !todo.status,
+      task: todo.task
+    });
+    fetchTodo();
   };
 
   return (
@@ -40,13 +48,24 @@ const Todo = () => {
         placeholder="Enter the task"
         onChange={e => setTask(e.target.value)}
       />
-      <button onClick={addTodo}>Add</button>
+      <button onClick={handleAddOrEdit}>{editing ? 'Update' : 'Add'}</button>
       <ul>
-        {todo.map(item => (
-          <li key={item._id}>
-            {item.task}
-            <button onClick={() => deleteTodo(item._id)}>Delete</button>
-            <button onClick={() => updateTodo(item._id, item.task)}>Update</button>
+        {todos.map(todo => (
+          <li key={todo._id}>
+            <span
+              onClick={() => handleToggleStatus(todo)}
+              style={{
+                cursor: 'pointer',
+                textDecoration: todo.status ? 'line-through' : 'none'
+              }}
+            >
+              {todo.task}
+            </span>
+            <button onClick={() => {
+              setEditing(todo);
+              setTask(todo.task);
+            }}>Edit</button>
+            <button onClick={() => handleDelete(todo._id)}>Delete</button>
           </li>
         ))}
       </ul>
